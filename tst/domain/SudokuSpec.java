@@ -27,10 +27,10 @@ public class SudokuSpec {
 		Sudoku unit = new Sudoku(makeGrid());
 
 		assertTrue(unit.solve() == true);
-		assertTrue(unit.getGrid().equals(new Grid(expectedGrid())));
+		assertTrue(unit.getGrid().equals(new Grid(expectedSolution())));
 	}
 
-	private int[][] expectedGrid() {
+	private int[][] expectedSolution() {
 		int[][] grid = new int[][] 
 				{{3, 4, 6, 5, 9, 2, 8, 1, 7, },
 			     {9, 5, 8, 4, 7, 1, 2, 3, 6, },
@@ -62,73 +62,4 @@ public class SudokuSpec {
 		int[][] grid = new int[][] {{0, 4, 0},{9, 5, 0},{0, 7, 2}};
             return grid;
 	}
-
-//	@Test
-//	public void algorothm_whenSolve() {
-//		Sudoku unit = new Sudoku(SMALL_GRID);
-//
-//		boolean solved = unit.solve();
-//		if (solved) {
-//			int[][] sudoku = unit.getSudoku();
-//			for (int i = 0; i < sudoku.length; i++) {
-//				for (int j = 0; j < sudoku.length; j++) {
-//					System.out.print(Integer.toString(sudoku[i][j]) + " ");
-//				}
-//				System.out.println();
-//			}
-//
-//		}
-//		assertTrue(solved == true);
-//	}
-
-//	@Test
-//	public void ctor_whenTipical() {
-//		Sudoku unit = new Sudoku(TIPICAL_GRID);
-//
-//		assertTrue(unit.getBoard().length == 9);
-//	}
-//
-//	@Test
-//	public void ctor_whenBoardTooBig() {
-//		Sudoku unit = new Sudoku(TOO_BIG_GRID);
-//
-//		assertTrue(unit.getBoard().length > 9);
-//	}
-//
-//	@Test
-//	public void ctor_whenBoardIsNull() {
-//		Sudoku unit = new Sudoku(0);
-//
-//		assertTrue(unit.getBoard().length == 0);
-//	}
-//
-//	@Test
-//	public void solve_whenTipical() {
-//		Sudoku unit = new Sudoku(TIPICAL_GRID);
-//
-////		Cell [][] grid = {{0, 0, 0}, {0, 0, 0}};
-//
-////		, {0, 0, 0},
-////						   {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
-////						   {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
-////						   {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
-////						   {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
-////						   {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
-////						   {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
-////						   {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
-////						   {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-////		unit.fillWith();
-//
-////		unit.solve();
-////		assertBoardIsFilled(unit.getBoard(), (TIPICAL_GRID*4));
-//	}
-//
-//	private void assertBoardIsFilled(int[][] board, int expectedNumber) {
-//		int actualNumber = 0;
-//		for (int i = 0; i < board.length; i++)
-//			for (int j = 0; j < board[0].length; j++)
-//				actualNumber += 1;
-//
-//		assertTrue(actualNumber == expectedNumber);
-//	}
 }
