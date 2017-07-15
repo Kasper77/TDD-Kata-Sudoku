@@ -1,7 +1,5 @@
 package domain;
 
-import static org.junit.Assert.assertTrue;
-
 public class Grid {
 	private int[][] grid = null;
 	private static final int GRID_SIZE = 9;
@@ -18,19 +16,25 @@ public class Grid {
 		return grid.length;
 	}
 
-	public void set(int row, int col, int num) {
-		grid[row][col] = num;
+	public void set(Cell cell, int num) {
+		grid[cell.getRow()][cell.getCol()] = num;
 	}
 
-	public void invalidate(int row, int col) {
-		grid[row][col] = UNASSIGNED;
+	public void invalidate(Cell cell) {
+		grid[cell.getRow()][cell.getCol()] = UNASSIGNED;
 	}
 
-	public boolean isAssigned(int i, int j) {
-		if (grid[i][j] != UNASSIGNED) {
-			return true;
+	public Cell findUnassignedCell() {
+		Cell cell = null;
+		for (int i = 0; i < grid.length; ++i) {
+			for (int j = 0; j < grid.length; ++j) {
+				if (!isAssigned(i, j)) {
+					cell = new Cell(i, j, UNASSIGNED);
+					return cell;					
+				}
+			}			
 		}
-		return false;
+		return cell;
 	}
 
 	public boolean cellHasThisValue(int row, int col, int num) {
@@ -53,5 +57,12 @@ public class Grid {
 				if (grid[i][j] != toCompareWith[i][j])
 					return false;
 		return true;
+	}
+
+	private boolean isAssigned(int i, int j) {
+		if (grid[i][j] != UNASSIGNED) {
+			return true;
+		}
+		return false;
 	}
 }

@@ -1,12 +1,12 @@
 package domain;
 
 public class Cell {
-	private int val;
+//	private int val;  // not needed for now
 	private int row;
 	private int col;
 	
 	Cell (int row, int col, int val) {
-		this.val = val;
+//		this.val = val;
 		this.row = row;
 		this.col = col;
 	}
@@ -21,6 +21,6 @@ public class Cell {
 	}
 
 	public int getCol() {
-		return this.row;
+		return this.col;
 	}
 }

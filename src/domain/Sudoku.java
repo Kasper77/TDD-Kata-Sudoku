@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Sudoku {
 	private Grid grid = null;
 
@@ -14,42 +12,27 @@ public class Sudoku {
 	}
 
 	boolean solve() {
-		AtomicInteger row = new AtomicInteger(0);
-		AtomicInteger col = new AtomicInteger(0);
-//		Cell cell = new Cell (0, 0, 0);
-		if (!FindUnassignedLocation(row, col))
-			return true; // success!
+		Cell cell = grid.findUnassignedCell();
+		if (cell == null)
+			return true; // success! all cells are assigned
 
 		for (int num = 1; num <= grid.length(); num++) {
-			if (isSafe(row.get(), col.get(), num)) {
-				grid.set(row.get(), col.get(), num);
+			if (isSafe(cell, num)) {
+				grid.set(cell, num);
 
 				if (solve())
 					return true;	
 
-				grid.invalidate(row.get(), col.get());
+				grid.invalidate(cell);
 			}
-		}
-		return false; // backtracking
-	}
-
-	private boolean FindUnassignedLocation(AtomicInteger row, AtomicInteger col) {
-		for (int i = 0; i < grid.length(); ++i) {
-			for (int j = 0; j < grid.length(); ++j) {
-				if (!grid.isAssigned(i, j)) {
-					row.set(i);
-					col.set(j);
-					return true;					
-				}				
-			}			
 		}
 		return false;
 	}
 
-	private boolean isSafe(int row, int col, int num) {
-		return !UsedInRow(row, num) && 
-			   !UsedInCol(col, num) && 
-			   !UsedInBox(row - row % 3, col - col % 3, num);
+	private boolean isSafe(Cell cell, int num) {
+		return !UsedInRow(cell.getRow(), num) && 
+			   !UsedInCol(cell.getCol(), num) && 
+			   !UsedInBox(cell.getRow() - cell.getRow() % 3, cell.getCol() - cell.getCol() % 3, num);
 	}
 
 	private boolean UsedInRow(int row, int num) {
