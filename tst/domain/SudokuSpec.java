@@ -30,6 +30,14 @@ public class SudokuSpec {
 		assertTrue(unit.getGrid().equals(new Grid(expectedSolution())));
 	}
 
+	@Test
+	public void solve_whenPuzzleIsPassedToSolveMethod() throws Exception {
+		Sudoku unit = new Sudoku();
+
+		assertTrue(unit.solve(makeGrid()) == true);
+		assertTrue(unit.getGrid().equals(new Grid(expectedSolution())));
+	}
+
 	private int[][] expectedSolution() {
 		int[][] grid = new int[][] 
 				{{3, 4, 6, 5, 9, 2, 8, 1, 7},

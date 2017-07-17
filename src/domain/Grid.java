@@ -47,10 +47,12 @@ public class Grid {
 		return grid;
 	}
 
-	public boolean equals(Grid expected) {
+	@Override
+	public boolean equals(Object o) {
+		Grid expected = (Grid) o;
 		if (this.length() != expected.length())
 			return false;
-		
+
 		int[][] toCompareWith = expected.getGrid();
 		for (int i = 0; i < this.length(); i++)
 			for (int j = 0; j < this.length(); j++)

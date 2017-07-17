@@ -7,11 +7,28 @@ public class Sudoku {
 		this.grid = new Grid (grid);
 	}
 
+	public Sudoku() {
+	}
+
 	public Grid getGrid() {
 		return grid;
 	}
 
-	boolean solve() {
+	public boolean solve(int[][] grid) {
+		try {
+			this.grid = new Grid (grid);
+		} catch (BadGridSizeExeption e) {
+			System.out.println("Bad Grid Size!!!");
+			e.printStackTrace();
+		}
+		return solve();
+	}
+
+	public boolean solve() {
+		if (grid == null) {
+			System.out.println("Grid not set or not valid!!!");
+			return false; 
+		}
 		Cell cell = grid.findUnassignedCell();
 		if (cell == null)
 			return true; // success! all cells are assigned
